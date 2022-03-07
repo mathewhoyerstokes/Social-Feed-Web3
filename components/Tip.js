@@ -5,7 +5,8 @@ const Tip = function ({ isLoggedIn, accounts, address }) {
   const send = function () {
     if (isLoggedIn) {
       const price = web3.utils.toWei("0.01", "ether")
-      window.ethereum.request({
+
+      window.ethereum.request({ 
         method: "eth_sendTransaction",
         params: [{
           from: accounts[0],
@@ -14,17 +15,17 @@ const Tip = function ({ isLoggedIn, accounts, address }) {
         }]
       })
     } else {
-      alert("send 0.01 ETH please!")
+      alert("Please connect your wallet")
     }
   }
 
   if (accounts[0] === address) {
     return (
-        <></>
+      <></>
     )
   } else {
     return (
-        <button disabled={!isLoggedIn} onClick={send}>Tip 0.01 ETH</button>
+      <button disabled={!isLoggedIn} onClick={send}>Tip 0.01 ETH</button>
     )
   }
 }

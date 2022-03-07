@@ -7,46 +7,46 @@ const AnswerForm = function ({ accounts, setAnswers, isLoggedIn }) {
   const post = async function (event) {
     event.preventDefault()
 
-    const confirmationMessage = "This message is to verify it's you"
+    const confirmationMessage = "This message is to verify that you are the person posting this reply!"
 
     const signedMessage = await web3.eth.personal.sign(confirmationMessage, accounts[0])
-
-    const data = {
+    
+    const data = { 
       questionId: 1,
-      reply: message,
+      reply: message, 
       account: accounts[0],
       confirmationMessage: confirmationMessage,
       signedMessage: signedMessage
     }
 
-    fetch("/api/answers", {
+    fetch("/api/answers", { 
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     })
-        .then(response => response.json())
-        .then(data => {
-          setAnswers(current => {
-            return [...current, data]
-          })
-
-          setMessage("")
-        })
-        .catch(error => {
-          console.error(error)
-        })
+    .then(response => response.json())
+    .then(data => {
+      setAnswers(current => {
+        return [...current, data]
+      })
+  
+      setMessage("")
+    })
+    .catch(error => {
+      console.error(error)
+    })
   }
 
   return (
-      <form onSubmit={post} className="answer-form">
-      <textarea
-          placeholder="Please be nice and courteous in your answers!"
-          value={message}
-          onChange={e => setMessage(e.target.value)}>
+    <form onSubmit={post} className="answer-form">
+      <textarea 
+        placeholder="Please be nice and courteous in your answers!" 
+        value={message} 
+        onChange={e => setMessage(e.target.value)}>  
       </textarea>
-
-        <button disabled={!isLoggedIn}>Reply</button>
-      </form>
+      
+      <button disabled={!isLoggedIn}>Reply</button>
+    </form>
   )
 }
 

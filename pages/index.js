@@ -15,13 +15,6 @@ import Answer from '../components/Answer'
 import AnswerForm from '../components/AnswerForm'
 
 export default function Home() {
-  // todo:
-  // 1. make the connect button work!
-  // 2. get the answers from the API (see /api/answers.js file)
-  // 3. add tipping like project 1
-  // 4. make the user name look good
-  // 5. let the user post their own reply
-
   const [accounts, setAccounts] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(true)

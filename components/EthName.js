@@ -34,26 +34,29 @@ const EthName = function ({ address }) {
   let formattedAddress = address.substr(0, 8) + "..." + address.substr(-4)
 
   let icon = (
-      <Jazzicon diameter={32} seed={jsNumberForAddress(address)} />
+    <Jazzicon diameter={32} seed={jsNumberForAddress(address)} />
   )
 
   return (
-      <div className="eth-name">
-        <div className="icon">
-          {avatar ? (
-              <img src={avatar} alt="avatar" />
-          ) : icon}
-        </div>
-
-        <div className="name">
-          <span className="primary">
-            {name ? name : formattedAddress}
-          </span>
-          <span className="secondary">
-            {name ? formattedAddress : ""}
-          </span>
-        </div>
+    <div className="eth-name">
+      <div className="icon">
+        {avatar ? (
+          <img src={avatar} alt="avatar" />
+        ) : icon}
       </div>
+
+      <div className="name">
+        <span className="primary">
+          {name ? name : formattedAddress}
+          {/* ENS name if one here */}
+        </span>
+        <span className="secondary">
+          {/* formatted address here */}
+          {name ? formattedAddress : ""}
+        </span>
+      </div>
+     
+    </div>
   )
 }
 
